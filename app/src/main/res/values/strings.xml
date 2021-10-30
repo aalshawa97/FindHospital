@@ -18,4 +18,5 @@
     <string name="loading_tasks_error">Tasks loading error</string>
     <string name="make_call">Make call</string>
     <string name="login">Login</string>
+    <string name="title_activity_recycler">Recycler Activity</string>
 </resources>

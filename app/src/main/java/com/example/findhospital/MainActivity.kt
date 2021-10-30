@@ -1,5 +1,6 @@
 package com.example.findhospital
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.findhospital.databinding.ActivityMainBinding
+import com.example.findhospital.ui.list.RecyclerActivity
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +35,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        Timer("SettingUp", false).schedule(20000) {
+            Intent(this@MainActivity, RecyclerActivity::class.java)
+            this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
+        }
     }
 }
