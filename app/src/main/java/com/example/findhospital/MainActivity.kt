@@ -2,13 +2,17 @@ package com.example.findhospital
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.findhospital.databinding.ActivityMainBinding
+import com.example.findhospital.ui.list.Hospital
+import com.example.findhospital.ui.list.MyAdapter
 import com.example.findhospital.ui.list.RecyclerActivity
 import java.util.*
 import kotlin.concurrent.schedule
@@ -16,6 +20,11 @@ import kotlin.concurrent.schedule
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var listAdapter: MyAdapter
+    private val contactsList: ArrayList<Hospital> = ArrayList()
+    private lateinit var recycler: RecyclerView
+    private lateinit var makeCallButton : Button
+    private val newWordActivityRequestCode = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        Timer("SettingUp", false).schedule(20000) {
-            Intent(this@MainActivity, RecyclerActivity::class.java)
-            this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
+        Timer("SettingUp", false).schedule(10000) {
+        Intent(this@MainActivity, RecyclerActivity::class.java)
+        this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
         }
     }
 }
