@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FindHospital</string>
+    <string name="title_home">List</string>
+    <string name="title_dashboard">Map</string>
+    <string name="title_notifications">Chat</string>
+    <string name="label_all">all</string>
+    <string name="no_tasks_all">no tasks</string>
+    <string name="label_active">active</string>
+    <string name="no_tasks_active">no tasks active</string>
+    <string name="label_completed">label completed</string>
+    <string name="no_tasks_completed">no tasks completed</string>
+    <string name="completed_tasks_cleared">completed tasks cleared</string>
+    <string name="task_marked_complete">task completed</string>
+    <string name="task_marked_active">task active</string>
+    <string name="successfully_saved_task_message">Successfully saved task message</string>
+    <string name="successfully_added_task_message">Sucessfully added task</string>
+    <string name="successfully_deleted_task_message">Successfully deleted task</string>
+    <string name="loading_tasks_error">Tasks loading error</string>
+    <string name="make_call">Make call</string>
+    <string name="login">Login</string>
+</resources>
