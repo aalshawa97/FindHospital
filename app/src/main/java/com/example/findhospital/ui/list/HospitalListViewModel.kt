@@ -7,8 +7,7 @@ import androidx.lifecycle.ViewModel
 class HospitalListViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is hospital Fragment"
-
+        value = "These are the hospitals: \"Providence Brigeport, Providence Mercantile, Providence St. Vincent\", Providence Newberg"
     }
     val text: LiveData<String> = _text
 }

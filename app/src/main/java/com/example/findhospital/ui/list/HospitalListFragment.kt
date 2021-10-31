@@ -1,5 +1,6 @@
 package com.example.findhospital.ui.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ class HospitalListFragment : Fragment() {
         hospitalListViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
         return root
     }
 

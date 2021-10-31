@@ -8,9 +8,12 @@
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/drawable/ic_verified_user_96dp.xml" value="0.1609375" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/drawable/logo_no_fill.xml" value="0.1609375" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_main.xml" value="0.2765625" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_maps.xml" value="0.12447916666666667" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_phone.xml" value="0.1" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/contact_list_item.xml" value="0.1" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_dashboard.xml" value="0.2765625" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_hospital_list.xml" value="0.14479166666666668" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_notifications.xml" value="0.2765625" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/recycler_view.xml" value="0.1" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2765625" />
       </map>
