@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -47,6 +48,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.56'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-auth:21.0.1'
     implementation 'com.google.firebase:firebase-messaging:22.0.0'
     implementation 'com.firebaseui:firebase-ui:0.6.2'

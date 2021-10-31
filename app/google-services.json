@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "885833960223",
+    "project_id": "findhospital-adc13",
+    "storage_bucket": "findhospital-adc13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885833960223:android:e225e25e2179cfd8223e2a",
+        "android_client_info": {
+          "package_name": "com.example.findhospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885833960223-i8a3vfpa23qauu2dpk0tugqo7ocom397.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzckk8Nwxuke5mQvCh7-fIvoA4hk30C7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885833960223-i8a3vfpa23qauu2dpk0tugqo7ocom397.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

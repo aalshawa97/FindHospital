@@ -40,6 +40,9 @@
             android:name=".activity.MapsActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.MainActivityJ"
+            android:exported="false" />
+        <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
