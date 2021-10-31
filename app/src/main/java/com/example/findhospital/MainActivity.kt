@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        Timer("SettingUp", false).schedule(10000) {
+        //Timer("SettingUp", false).schedule(10000) {
         Intent(this@MainActivity, RecyclerActivity::class.java)
         this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
-        }
+        //}
     }
 }

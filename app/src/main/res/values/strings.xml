@@ -19,4 +19,6 @@
     <string name="make_call">Make call</string>
     <string name="login">Login</string>
     <string name="title_activity_recycler">Recycler Activity</string>
+    <string name="calling">Calling</string>
+    <string name="image_call_hint">Call</string>
 </resources>
