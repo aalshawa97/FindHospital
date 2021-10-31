@@ -9,7 +9,6 @@
         android:id="@+id/navigation_home"
         android:name="com.example.findhospital.ui.list.HospitalListFragment"
         android:label="@string/title_home"
-        android:onClick="loadList"
         tools:layout="@layout/fragment_hospital_list" />
 
     <fragment

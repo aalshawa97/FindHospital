@@ -1,7 +1,7 @@
 package com.example.findhospital.activity
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,14 +11,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.findhospital.activity.MapsActivity
 import com.example.findhospital.R
 import com.example.findhospital.databinding.ActivityMainBinding
 import com.example.findhospital.ui.list.Hospital
 import com.example.findhospital.ui.list.MyAdapter
-import com.example.findhospital.ui.list.RecyclerActivity
+import java.lang.NullPointerException
 import java.util.*
-import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +35,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        try
+        {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+        }
+        catch (e : NullPointerException)
+        {
+            Log.d("MainActivity exception",e.toString())
+        }
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
@@ -54,11 +59,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         //Timer("SettingUp", false).schedule(10000) {
-        this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
+        //this@MainActivity.startActivity(Intent(this@MainActivity, RecyclerActivity::class.java))
         //}
 
-        Timer("SettingUp", false).schedule(30000) {
-        this@MainActivity.startActivity(Intent(this@MainActivity, MapsActivity::class.java))
-        }
     }
 }

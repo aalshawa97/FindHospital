@@ -1,4 +1,4 @@
-package com.example.findhospital.ui.list;
+package com.example.findhospital.activity;
 
 import android.Manifest;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.example.findhospital.ui.list
+package com.example.findhospital.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findhospital.R
+import com.example.findhospital.ui.list.Hospital
+import com.example.findhospital.ui.list.MyAdapter
 
 class RecyclerActivity : AppCompatActivity() {
 
