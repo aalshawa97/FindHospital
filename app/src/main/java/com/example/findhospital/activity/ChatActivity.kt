@@ -32,7 +32,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
 
-class ChatActivity: AppCompatActivity() {
+open class ChatActivity: AppCompatActivity() {
     lateinit var editText: EditText
     lateinit var listView: ListView
     private var rootRef: FirebaseFirestore? = null
@@ -196,7 +196,6 @@ class ChatActivity: AppCompatActivity() {
     }
 
     fun byteArrayOfInts(vararg ints: Int) = ByteArray(ints.size) { pos -> ints[pos].toByte() }
-
 
     inner class MessageViewHolder internal constructor(private val view: View) : RecyclerView.ViewHolder(view) {
         internal fun setMessage(message: Message) {
