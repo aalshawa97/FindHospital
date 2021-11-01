@@ -9,10 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.findhospital.activity.ChatActivity
-import com.example.findhospital.activity.HomeActivity
-import com.example.findhospital.activity.LoginActivity
-import com.example.findhospital.activity.MapsActivity
+import com.example.findhospital.activity.*
 import com.example.findhospital.databinding.FragmentNotificationsBinding
 import java.util.*
 import kotlin.concurrent.schedule
@@ -31,7 +28,9 @@ class NotificationsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Timer("SettingUp", false).schedule(30000) {
-            this@NotificationsFragment.startActivity(Intent(activity,  LoginActivity::class.java))
+        this@NotificationsFragment.startActivity(Intent(activity, MainActivityJ::class.java))
+        this@NotificationsFragment.startActivity(Intent(activity, ChatActivity::class.java))
+
         //}
     }
 
