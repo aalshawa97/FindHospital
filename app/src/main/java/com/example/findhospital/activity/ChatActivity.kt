@@ -1,5 +1,6 @@
 package com.example.findhospital.activity
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -48,7 +49,9 @@ class ChatActivity: AppCompatActivity() {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val fromUser = intent.extras?.get("fromUser") as User
+        try {
+            val fromUser = intent.extras?.get("fromUser") as User
+
         fromUid = fromUser.uid
         var fromRooms = fromUser.rooms
         val toUser = intent.extras?.get("toUser") as User
@@ -124,7 +127,11 @@ class ChatActivity: AppCompatActivity() {
         listView = findViewById(R.id.list_viw)
         rootRef = FirebaseFirestore.getInstance()
         recycler_view = findViewById(R.id.recycler_view)
-
+        }
+        catch (e : java.lang.Exception)
+        {
+            Log.d(TAG, "onCreate: exception thrown when getting user")
+        }
 
         //secretKeySpec = new SecreyKeySpec()
     }

@@ -302,7 +302,7 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         //private val TAG = "LoginActivity"
-        private const val RC_SIGN_IN = 123
+        const val RC_SIGN_IN = 123
     }
 
     fun onClick(view: android.view.View) {

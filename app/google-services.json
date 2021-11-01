@@ -1,33 +1,100 @@
 {
   "project_info": {
-    "project_number": "885833960223",
-    "project_id": "findhospital-adc13",
-    "storage_bucket": "findhospital-adc13.appspot.com"
+    "project_number": "123140511070",
+    "firebase_url": "https://hospitallocator-be5cd.firebaseio.com",
+    "project_id": "hospitallocator-be5cd",
+    "storage_bucket": "hospitallocator-be5cd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:885833960223:android:e225e25e2179cfd8223e2a",
+        "mobilesdk_app_id": "1:123140511070:android:6f156e6fcda53a1e02ebcf",
         "android_client_info": {
           "package_name": "com.example.findhospital"
         }
       },
       "oauth_client": [
         {
-          "client_id": "885833960223-i8a3vfpa23qauu2dpk0tugqo7ocom397.apps.googleusercontent.com",
+          "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCzckk8Nwxuke5mQvCh7-fIvoA4hk30C7A"
+          "current_key": "AIzaSyDhp9velxKCu4zR7j8iQJTuJvGY9pjnPoU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "885833960223-i8a3vfpa23qauu2dpk0tugqo7ocom397.apps.googleusercontent.com",
+              "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123140511070:android:a5c84837bb6de83502ebcf",
+        "android_client_info": {
+          "package_name": "com.example.hospitalfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhp9velxKCu4zR7j8iQJTuJvGY9pjnPoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123140511070:android:053eac0e60d6acb402ebcf",
+        "android_client_info": {
+          "package_name": "hospital.Locator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123140511070-rh731bv7epf0lntc67uv632j552sh9jr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hospital.Locator",
+            "certificate_hash": "88f90a0fae82aba9d3a4f6f0a9a6b8ccbde4a3c9"
+          }
+        },
+        {
+          "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhp9velxKCu4zR7j8iQJTuJvGY9pjnPoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123140511070-r7bpu1rhlsoe7knd9ov07v7va2kfa0jm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

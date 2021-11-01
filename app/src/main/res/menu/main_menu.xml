@@ -12,10 +12,4 @@
         android:icon="@android:drawable/ic_menu_add"
         app:showAsAction="ifRoom"/>
 
-    <!--
-    <item android:id="@+id/sign_out_button"
-        android:title="@string/sign_out_button"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
-    -->
 </menu>
