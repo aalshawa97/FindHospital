@@ -5,40 +5,26 @@ package com.example.findhospital.activity
 //Hospital Locator to conduct virtual visits at hospitals with a headset.
 
 //This makes the application an activity
-import android.content.Context
-import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.findhospital.R
 import com.example.findhospital.models.Place
 import com.example.findhospital.models.UserMap
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.*
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.lang.ArithmeticException
-import java.lang.NullPointerException
-import java.sql.Connection
-import javax.xml.parsers.DocumentBuilder
-import com.example.findhospital.R
-import javax.xml.parsers.DocumentBuilderFactory
 
-//Declare and intitialize variables
+//Declare and initialize variables
 //private static final String GOOGLE_API_KEY = "AIzaSSDFSDF8Kv2eP0PM8adf5dSDFysdfas323SD3HA";
 //GoogleMap googleMap;
-val PLAY_SERVICES_RESOLUTION_REQUEST = 0
-private lateinit var mMap: GoogleMap
+const val PLAY_SERVICES_RESOLUTION_REQUEST = 0
 private var userMap: UserMap = UserMap(" ",  listOf(Place("Providence Medical Group Primary Care - Newberg", "When you choose Providence Medical Group - Newberg, you’re choosing more than a primary care provider or a clinic location. You’re choosing an integrated network of caregivers, specialists and clinical programs dedicated to compassionate, patient-centered health care.\n" +
         "\n" +
         "It’s all part of your medical home: a coordinated approach that brings together an expert team focused on caring for you—body, soul and mind.\n" +
@@ -46,44 +32,7 @@ private var userMap: UserMap = UserMap(" ",  listOf(Place("Providence Medical Gr
         "Providence Medical Group accepts most major forms of insurance. Please contact your insurance carrier to confirm coverage at this clinic.\n" +
         "\n" +
         "Whether it’s internal medicine, family medicine or obstetrics, we look forward to serving you in being your health care professionals.", 45.5472 ,122.6417)))
-val EXTRA_USER_MAP = "EXTRA_USER_MAP"
-
-var locationManager: LocationManager? = null
-public class GooglePlacesActivity{
-
-}
-
-fun createTable(connection: Connection)
-{
-    //SQL statement to create a table
-    val sql ="""
-        CREATE Table                                                                                                                                (
-        ID int primary key,
-        ITEM varchar(255),
-        PRICE float)
-    """.trimMargin()
-    with(connection){
-        //Get an instance of statement from the connection use the execute() method to execute the sql
-        createStatement().execute(sql)
-
-        //Commit the change to the database
-        commit()
-    }
-}
-
-fun displayLocation()
-{
-    //Display the location of Google, San Francisco using a global plus code.
-    var gmmIntentUri = Uri.parse("http://plus.codes/849VQJQ5+XX")
-    //Equivalently, define the same location using a local plus code
-    gmmIntentUri = Uri.parse("https://plus.codes/QJQ5+XX,San%20Francisco")
-    //Construct and use the Intent as in the examples above
-}
-
-fun onCreateOptionsMenu(menu: Menu?): Boolean{
-    //menuInflater.inflate(R.menu.map_options, menu)
-    return true
-}
+const val EXTRA_USER_MAP = "EXTRA_USER_MAP"
 
 // fun onOptionItemSelected(item: MenuItem) //= when (item.itemId)
 //{
@@ -96,34 +45,22 @@ fun onCreateOptionsMenu(menu: Menu?): Boolean{
 //else ->
 //}
 
-fun onBind() = null
-var type = "type";
-//Custom Setter
-enum class SearchResultType{
-    HISTORY, SAVED, BASIC
-}
-var resultType: SearchResultType
-    get()
-    {
-        val resultTypeString = "History"
-        return enumValueOf(resultTypeString)
-    }
-    set(value)
-    {
-        var setterVisibility: String = "abc"
-        // the setter is private and has the default implementation
-        var setterWithAnnotation: Any? = null
-    }
+var type = "type"
 
+/*
 interface location {
     fun getLocations(): List<LocationSource>
 }
+*/
 
+/*
 private fun Context.getService(): Nothing? {
     // Get the status of the location
     return null
 }
+*/
 
+/*
 fun onMenuOptionClick() = Unit
 
 fun onClick()
@@ -140,32 +77,25 @@ fun onCreateOptionsMenu(menu: Menu) {
     onCreateOptionsMenu(menu)
     //ObjectRenderer()
 }
+*/
 
-sealed class Status()
-{
-    class Error : Status()
-    class Success : Status()
-}
-
-fun main(args: Array<String>)
+fun main()
 {
     Bundle()
     println("Hello, World")
 }
 
-public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     //Google map;
 
-    val docBuilder: DocumentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+    /*
     interface IObserver {
         fun update()
     }
+    */
 
-    // Use your current location here
-    val mLatitude = 37.77656;
-
-    fun getUrl(latitude: Double, longitude: Double, nearByPlace: String): String {
+    private fun getUrl(latitude: Double = 45.4160844, longitude: Double = -122.7229328, nearByPlace: String = "Providence Mercantile"): String {
         val gmmIntentUri = "hospitals"
         val gmmIntentStringExample = "https://www.google.com/maps/search/hospitals/@45.3756934,-122.7698314,11z/data=!3m1!4b1"
         // Search for hospitals nearby
@@ -174,7 +104,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             println(longitude)
             println(latitude)
             println(nearByPlace)
-            val gmmIntentUri = Uri.parse("geo:0,0?q=hospitals")
+            Uri.parse("geo:0,0?q=hospitals")
             //Example string for hospitals in Lake Oswego, Oregon
             println(gmmIntentStringExample)
         }
@@ -182,11 +112,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         {
 
         }
-        return "https://maps.googleapis.com/maps/api/streetview?parameters\n" +  gmmIntentUri
-    }
-    fun foo()
-    {
-
+        return "https://maps.googleapis.com/maps/api/streetview?parameters\n$gmmIntentUri"
     }
 
     private fun isGooglePlayServicesAvailable(): Boolean {
@@ -195,7 +121,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
-                    .show()
+                    ?.show()
             } else {
                 println("This device is not supported.")
                 finish()
@@ -206,39 +132,38 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     @Override
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         // Retrieve content vie that renders the map.
         super.onCreate(savedInstanceState)
         try{
             userMap =
-                (intent?.getSerializableExtra(EXTRA_USER_MAP) as? UserMap)!!//UserMap("Covid reasearch", ("John Hopkins","University") as Place)
+                (intent?.getSerializableExtra(EXTRA_USER_MAP) as? UserMap)!!//UserMap("Covid research", ("John Hopkins","University") as Place)
         }
         catch (e : NullPointerException)
         {
 
         }
 
-        userMap.places.get(0).title ="Providence Medical Group Primary Care - Newberg"
-        userMap.places.get(0).description = "\"When you choose Providence Medical Group - Newberg, you’re choosing more than a primary care provider or a clinic location. You’re choosing an integrated network of caregivers, specialists and clinical programs dedicated to compassionate, patient-centered health care.\\n\" +\n" +
+        "Providence Medical Group Primary Care - Newberg".also { userMap.places[0].title = it }
+        userMap.places[0].description = "\"When you choose Providence Medical Group - Newberg, you’re choosing more than a primary care provider or a clinic location. You’re choosing an integrated network of caregivers, specialists and clinical programs dedicated to compassionate, patient-centered health care.\\n\" +\n" +
                 "        \"\\n\" +\n" +
                 "        \"It’s all part of your medical home: a coordinated approach that brings together an expert team focused on caring for you—body, soul and mind.\\n\" +\n" +
                 "        \"\\n\" +\n" +
                 "        \"Providence Medical Group accepts most major forms of insurance. Please contact your insurance carrier to confirm coverage at this clinic.\\n\" +\n" +
                 "        \"\\n\" +\n" +
                 "        \"Whether it’s internal medicine, family medicine or obstetrics, we look forward to serving you in being your health care professionals.\""
-        userMap.places.get(0).latitude = 45.5472
-        userMap.places.get(0).longitude = 122.6417
+        userMap.places[0].latitude = 45.5472
+        userMap.places[0].longitude = 122.6417
 
-
+        /*
         if(getString(R.string.maps_api_key).isEmpty())
         {
             // Inject language or reference
-
-            foo()
         }
+        */
         if(!isGooglePlayServicesAvailable())
         {
-            return;
+            return
         }
         getUrl(45.4160844, -122.7229328, "Providence Mercantile")
         setContentView(R.layout.activity_maps)
@@ -261,10 +186,9 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    private fun startLocationUpdates()
-    {
-    }
+
     //Automatically locate hospitals around the user's location
+    /*
     private fun createLocationRequest() {
         val Place = "Hospitals"
         val Field ="Covid"
@@ -277,19 +201,16 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val careType = "Express"
     }
 
-    class PlacePicker
-    {
-
-    }
     fun onActivityResult(){
         val resultCode = 0
         if(resultCode == RESULT_OK)
         {
         }
     }
+*/
 
     // Function to print the hashMap
-    fun printHashMap(hashMap: HashMap<String, Int>){
+    private fun printHashMap(hashMap: HashMap<String, Int>){
         // isEmpty() function to check whether the hashMap is empty or not
         if(hashMap.isEmpty())
         {
@@ -297,15 +218,15 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         else
         {
-            println("hashMap : " + hashMap)
+            println("hashMap : $hashMap")
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         // A simple example of HashMap class define with "HashMap of <String, Int>"
-        var hashMap : HashMap<String, Int> = HashMap<String, Int>()
+        val hashMap : HashMap<String, Int> = HashMap()
         // Add elements to the hashMap
-        hashMap.put("Texas Medical Center", 0)
+        hashMap["Texas Medical Center"] = 0
         // Printing the empty hashMap
         printHashMap(hashMap)
         mMap = googleMap
@@ -318,7 +239,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker for each hospital
         val stJohnsHealth = LatLng(45.4160609, -122.7229228)
         val memorialHospitalOfSweetwaterCounty = LatLng(45.4160568, -122.7229396)
-        val memorialHospitalofConverseCounty = LatLng(45.4159997, -122.7229728)
+        val memorialHospitalOfConverseCounty = LatLng(45.4159997, -122.7229728)
         val wyomingMedicalCenter = LatLng(45.415987, -122.7229989)
         val rileyHospitalForChildren = LatLng(45.416043, -122.7229752)
         val penRoseHospital = LatLng(45.4160656, -122.7229924)
@@ -365,7 +286,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val legacySalmonCreek = LatLng(45.42, -122.72)
         val stCharlesMedicalCenter = LatLng(45.42, -122.72)
         val goodSamaritanRegionalMedicalCenter = LatLng(45.42, -122.72)
-        val ProvidenceMedicalCenterMedford = LatLng(45.4160126, -122.7230276)
+        val providenceMedicalCenterMedford = LatLng(45.4160126, -122.7230276)
         val skyLakesMedicalCenter = LatLng(45.42, -122.72)
         val lakeDistrictMedicalCenter = LatLng(45.42, -122.72)
         val samariatanLebanonCommunityHospital = LatLng(44.55, 122.91)
@@ -377,7 +298,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val stAlphonsusMedicalCenter = LatLng(45.42, -122.72)
         val harneyDistrictHospital = LatLng(44.59, -123.27)
         val columbiaMemorialHospital = LatLng(45.42, -122.72)
-        val southernCoosHospitalandHealthCenter = LatLng(45.42, -122.72)
+        val southernCoosHospitalAndHealthCenter = LatLng(45.42, -122.72)
         val woodlandParkHospital = LatLng(38.97, -105.08)
         val curryGeneralHospital = LatLng(45.42, -122.72)
         val coquilleValleyHospital = LatLng(45.42, -122.72)
@@ -394,12 +315,12 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val bayAreaHospital = LatLng(45.42, -122.72)
         val redmondClinic = LatLng(44.26, -121.28)
         val sageViewPsychiatrists = LatLng(44.07, -121.41)
-        val centralWashingtonHosptial = LatLng(47.21, -125.11)
+        val centralWashingtonHospital = LatLng(47.21, -125.11)
         val providenceStMaryMedicalCenterWallaWalla = LatLng(46.75, -123.56)
-        val columbiaBasinHosptial = LatLng(47.040, -125.120)
+        val columbiaBasinHospital = LatLng(47.040, -125.120)
         val providenceMountCarmelHospital = LatLng(46.86, -125.12)
         val harrisonMedicalCenter = LatLng(46.46, -125.39)
-        val sacredHeartChildrensHosptial = LatLng(47.63, -120.39)
+        val sacredHeartChildrensHospital = LatLng(47.63, -120.39)
         val graysHarborCommunityHospital = LatLng(45.95, -127.36)
         val providenceStPeterHospitalOlympia = LatLng(47.05, -127.33)
         val sacredHeartChildrenHospitalSpokane = LatLng(46.43, -123.02)
@@ -418,13 +339,13 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val triStateMemorialHospitalAndMedicalCampus = LatLng(46.60, -117.75)
         val mayersMemorialHospital = LatLng(43.43, -130.59)
         val stJoesphsMedicalCenter = LatLng(44.26, -121.28)
-        val diginityHealthStRoseDominicanHospital = LatLng(44.26, -121.28)
+        val dignityHealthStRoseDominicanHospital = LatLng(44.26, -121.28)
         val southernHillsHospitalAndMedicalCenter = LatLng(36.10, -117.54)
         val northVistaHospital = LatLng(36.20, -117.40)
         val mountGrantGeneralHospital = LatLng(38.0, -126.31)
         val pershingGeneralHospital = LatLng(37.35, -126.32)
         val sunriseHospitalMedicalCenter = LatLng(36.70, -126.32)
-        val northEasternNevadaRegionalHosptital = LatLng(44.26, -121.28)
+        val northEasternNevadaRegionalHospital = LatLng(44.26, -121.28)
         val carsonTahoeRegionalMedicalCenter = LatLng(44.26, -121.28)
         val hendersonHospital = LatLng(44.26, -121.28)
         val boulderCityHospital = LatLng(40.03, -122.60)
@@ -447,15 +368,15 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val texasHealthMedicalHearthMethodistHospital = LatLng(34.1545167, -101.5626582)
         val texasMedicalCenter = LatLng(39.3299013, -76.6227064)
         val texasOrthopedicHospital = LatLng(32.9620665, -103.7423977)
-        val iraanGeneralHospital = LatLng(32.9620665, -103.7423977)
+        val iranGeneralHospital = LatLng(32.9620665, -103.7423977)
         val baylorScottAndWhiteMedicalCenter = LatLng(30.4422841, -109.9256475)
         val reevesCountyHospitalDistrict = LatLng(33.105864, -107.6982278)
         val texasHealthHarrisMethodistHospital = LatLng(32.8196653, -103.7431051)
         val texasHealthPresbyterianHospitalDenton = LatLng(33.7563847, -103.4794332)
         val universityOfUtahHospital = LatLng(43.2158724, -121.7791681)
         val medicalCenterOfOdessa = LatLng(31.8438456, -104.8752377)
-        val theWomansHospitalOfTexasPediatrics = LatLng(28.3151712, -103.0696408)
-        val headacheAndMigraneTreatmentCenter = LatLng(45.4168815, -122.7236538)
+        val theWomensHospitalOfTexasPediatrics = LatLng(28.3151712, -103.0696408)
+        val headacheAndMigraineTreatmentCenter = LatLng(45.4168815, -122.7236538)
         val herberValleyHospital = LatLng(45.4160704, -122.7229424)
         val shrinersSaltLakeCity = LatLng(45.416029, -122.7229606)
         val brighamCityCommunityHospital = LatLng(45.4160255, -122.7230086)
@@ -475,8 +396,8 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val minidokaMemorialHospital = LatLng(43.8637729, -123.0177321)
         val christusSantaRosaHospitalWestoverHills = LatLng(28.5893737, -101.1299454)
         val texasChildrensHospital = LatLng(28.5893737, -101.1299454)
-        val surgicalHospitalOfOkhlahoma = LatLng(39.2089561, -128.0783334)
-        val mercyHospitalOkhlahomaCity = LatLng(35.493318, -97.6409485)
+        val surgicalHospitalOfOklahoma = LatLng(39.2089561, -128.0783334)
+        val mercyHospitalOklahomaCity = LatLng(35.493318, -97.6409485)
         val curaHealth = LatLng(35.4931561, -97.6409498)
         val communityHospitalNorth = LatLng(35.4931561, -97.6409498)
         val oklahomaHeartHospitalHeart = LatLng(38.979045, -128.6869605)
@@ -491,7 +412,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val senataraPrincessAnneHospital = LatLng(45.4160653, -122.7229121)
         val virginiaHospitalCenter = LatLng(45.4160653, -122.7229121)
         val naturalMedicineUniversity = LatLng(45.4934574, -122.807967)
-        val bonSecoursRichmondCommunityHosptial = LatLng(35.8205637, -135.810595)
+        val bonSecoursRichmondCommunityHospital = LatLng(35.8205637, -135.810595)
         val ascensionStThomasHospital = LatLng(45.41557, -122.7313178)
         val eastTennesseeHospital = LatLng(45.416067, -122.7229058)
         val nashvilleGeneralHospital = LatLng(45.416067, -122.7229058)
@@ -519,7 +440,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val jebelAliHospital = LatLng(45.4160461, -122.7229256)
         val massachusettsGeneralHospital = LatLng(45.4160544, -122.7229401)
         val shrinersHospitalForChildrenBoston = LatLng(36.884958, -132.6318486)
-        val massachusettsInstiuteOfTechnologyMedicalCenterPediatrics = LatLng(42.3361037, -71.1588672)
+        val massachusettsInstituteOfTechnologyMedicalCenterPediatrics = LatLng(42.3361037, -71.1588672)
         mMap.addMarker(
             MarkerOptions().position(evanstonRegionalHospital).title("Evanston Regional Hospital")
         )
@@ -539,13 +460,13 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(memorialHospitalOfSweetwaterCounty).title("Memorial Hospital of Sweetwater County")
         )
         mMap.addMarker(
-            MarkerOptions().position(memorialHospitalofConverseCounty).title("Memorial Hospital of Converse County")
+            MarkerOptions().position(memorialHospitalOfConverseCounty).title("Memorial Hospital of Converse County")
         )
         mMap.addMarker(
             MarkerOptions().position(massachusettsGeneralHospital).title("Massachusetts General Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(massachusettsInstiuteOfTechnologyMedicalCenterPediatrics).title("Massachusetts Instiute of Technology Medical Center Pediatrics")
+            MarkerOptions().position(massachusettsInstituteOfTechnologyMedicalCenterPediatrics).title("Massachusetts Institute of Technology Medical Center Pediatrics")
         )
         mMap.addMarker(
             MarkerOptions().position(floatingHospitalForChildrenHospital).title("Floating Hospital For Children Hospital")
@@ -557,7 +478,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(bostonUniversityHospital).title("Boston University Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(brighamAndWomensHospital).title("Brigham And Womens Hospital")
+            MarkerOptions().position(brighamAndWomensHospital).title("Brigham And Women's Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(newEnglandBaptistHospital).title("Shriners Hospital For Children Boston")
@@ -585,7 +506,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
         mMap.addMarker(
 
-            MarkerOptions().position(drSulaimanAlHabibHospitalInDubai).title("Dr Sulaiman Al Habib Hospital In Dubai")
+            MarkerOptions().position(drSulaimanAlHabibHospitalInDubai).title("Dr. Sulaiman Al Habib Hospital In Dubai")
         )
         mMap.addMarker(
             MarkerOptions().position(nmcRoyalHospital).title("NMC Royal Hospital City Hospital North Wing")
@@ -604,7 +525,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.addMarker(
 
-            MarkerOptions().position(bonSecoursRichmondCommunityHosptial).title("Bon Secours Richmond Community Hosptial")
+            MarkerOptions().position(bonSecoursRichmondCommunityHospital).title("Bon Secours Richmond Community Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(encompassHealthRehabilitationHospital).title("Encompass Health Rehabilitation Hospital")
@@ -690,10 +611,10 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(communityHospitalNorth).title("Community Hospital North")
         )
         mMap.addMarker(
-            MarkerOptions().position(surgicalHospitalOfOkhlahoma).title("Surgical Hospital Of Okhlahoma")
+            MarkerOptions().position(surgicalHospitalOfOklahoma).title("Surgical Hospital Of Oklahoma")
         )
         mMap.addMarker(
-            MarkerOptions().position(mercyHospitalOkhlahomaCity).title("Mercy Hospital of Okhlahoma City")
+            MarkerOptions().position(mercyHospitalOklahomaCity).title("Mercy Hospital of Oklahoma City")
         )
         mMap.addMarker(
             MarkerOptions().position(christusSantaRosaHospitalWestoverHills).title("Christus Santa Rosa Hospital Westover Hills")
@@ -747,10 +668,10 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(herberValleyHospital).title("Herber Valley Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(headacheAndMigraneTreatmentCenter).title("Headache and Migrane Treatment Center")
+            MarkerOptions().position(headacheAndMigraineTreatmentCenter).title("Headache and Migraine Treatment Center")
         )
         mMap.addMarker(
-            MarkerOptions().position(theWomansHospitalOfTexasPediatrics).title("Memorial Hospital Of Texas County")
+            MarkerOptions().position(theWomensHospitalOfTexasPediatrics).title("Memorial Hospital Of Texas County")
         )
         mMap.addMarker(
             MarkerOptions().position(memorialHospitalOfTexasCounty).title("Memorial Hospital Of Texas County")
@@ -780,7 +701,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(texasMedicalCenter).title("Texas Medical Center")
         )
         mMap.addMarker(
-            MarkerOptions().position(iraanGeneralHospital).title("Iraan General Hospital")
+            MarkerOptions().position(iranGeneralHospital).title("Iran General Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(texasOrthopedicHospital).title("Texas Orthopedic Hospital")
@@ -807,7 +728,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(mcKayDeeHospital).title("McKay Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(davisHospitalAndMedicalCenter).title("Davis Hosputal And Medical Center")
+            MarkerOptions().position(davisHospitalAndMedicalCenter).title("Davis Hospital And Medical Center")
         )
         mMap.addMarker(
             MarkerOptions().position(parkCityHospital).title("Park City Hospital")
@@ -852,7 +773,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(carsonTahoeRegionalMedicalCenter).title("Carson Tahoe Regional Medical Center")
         )
         mMap.addMarker(
-            MarkerOptions().position(northEasternNevadaRegionalHosptital).title("North Eastern Nevada Regional Hosptital")
+            MarkerOptions().position(northEasternNevadaRegionalHospital).title("North Eastern Nevada Regional Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(sunriseHospitalMedicalCenter).title("Sunrise Hospital Medical Center")
@@ -870,7 +791,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(southernHillsHospitalAndMedicalCenter).title("Southern Hills Hospital and Medical Center")
         )
         mMap.addMarker(
-            MarkerOptions().position(diginityHealthStRoseDominicanHospital).title("Dignity Health")
+            MarkerOptions().position(dignityHealthStRoseDominicanHospital).title("Dignity Health")
         )
         mMap.addMarker(
             MarkerOptions().position(stJoesphsMedicalCenter).title("St. Joesph's Medical Center")
@@ -882,7 +803,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(dignityHealth).title("Dignity Health")
         )
         mMap.addMarker(
-            MarkerOptions().position(mayersMemorialHospital).title("Mayers Memoriral Hospital")
+            MarkerOptions().position(mayersMemorialHospital).title("Mayers Memorial Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(whitmanHospitalAndMedicalClinics).title("Whitman Hospital and Medical Clinics")
@@ -891,7 +812,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(triStateMemorialHospitalAndMedicalCampus).title("Tristate Memorial Hospital and Medical Campus")
         )
         mMap.addMarker(
-            MarkerOptions().position(daytonGeneralHospital).title("Dayton General Hosptial")
+            MarkerOptions().position(daytonGeneralHospital).title("Dayton General Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(masonGeneralHospital).title("Mason General Health")
@@ -915,7 +836,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(westernStateHospital).title("Western State Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(easternStateHospital).title("Eastern State Hosital")
+            MarkerOptions().position(easternStateHospital).title("Eastern State Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(multiCareGoodSamaritanHospital).title("MultiCare Good Samaritan")
@@ -927,13 +848,13 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(sacredHeartChildrenHospitalSpokane).title("Sacred Heart Hospital Spokane")
         )
         mMap.addMarker(
-            MarkerOptions().position(providenceStPeterHospitalOlympia).title("Providence St. Peter Hosptial Olympia")
+            MarkerOptions().position(providenceStPeterHospitalOlympia).title("Providence St. Peter Hospital Olympia")
         )
         mMap.addMarker(
             MarkerOptions().position(graysHarborCommunityHospital).title("Gray's Harbor Community")
         )
         mMap.addMarker(
-            MarkerOptions().position(sacredHeartChildrensHosptial).title("Sacred Heart Children's Hospital")
+            MarkerOptions().position(sacredHeartChildrensHospital).title("Sacred Heart Children's Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(harrisonMedicalCenter).title("Harrison Medical Center")
@@ -942,16 +863,16 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(providenceMountCarmelHospital).title("Providence Mount Carmel Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(columbiaBasinHosptial).title("Columbia Basin Hospital")
+            MarkerOptions().position(columbiaBasinHospital).title("Columbia Basin Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(providenceStMaryMedicalCenterWallaWalla).title("Providence St.Mary Medical Center Walla Walla")
         )
         mMap.addMarker(
-            MarkerOptions().position(centralWashingtonHosptial).title("Central Washington Hospital")
+            MarkerOptions().position(centralWashingtonHospital).title("Central Washington Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(pioneerMemorialHospital).title("Pioneer Memorial Hosiptal")
+            MarkerOptions().position(pioneerMemorialHospital).title("Pioneer Memorial Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(sageViewPsychiatrists).title("Sage View Psychiatrists")
@@ -1005,7 +926,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(legacyEmanuelMedicalCenter).title("Legacy Emanuel Medical Center")
         )
         mMap.addMarker(
-            MarkerOptions().position(southernCoosHospitalandHealthCenter).title("Southern Coos Hospital and Health Center")
+            MarkerOptions().position(southernCoosHospitalAndHealthCenter).title("Southern Coos Hospital and Health Center")
         )
         mMap.addMarker(
             MarkerOptions().position(columbiaMemorialHospital).title("Columbia Memorial Hospital")
@@ -1041,7 +962,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(skyLakesMedicalCenter).title("Sky Lakes medical center Klamath Falls")
         )
         mMap.addMarker(
-            MarkerOptions().position(ProvidenceMedicalCenterMedford).title("Providence Medical Center Medford ")
+            MarkerOptions().position(providenceMedicalCenterMedford).title("Providence Medical Center Medford ")
         )
         mMap.addMarker(
             MarkerOptions().position(goodSamaritanRegionalMedicalCenter).title("St. Charles Medical Center")
@@ -1086,7 +1007,7 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             MarkerOptions().position(tualityCommunityHospital).title("Tuality Community Hospital")
         )
         mMap.addMarker(
-            MarkerOptions().position(samaritanNorthLincolnHospital).title("Samartian North Lincoln Hospital")
+            MarkerOptions().position(samaritanNorthLincolnHospital).title("Samaritans North Lincoln Hospital")
         )
         mMap.addMarker(
             MarkerOptions().position(legacySilverton).title("Legacy Silverton Medical Center")
@@ -1150,8 +1071,8 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         )
         mMap.moveCamera(CameraUpdateFactory.newLatLng(providenceBridgeport))
 
-        val naturalMedicine:HashMap<String, Int> = HashMap<String, Int>()
-        naturalMedicine.put("honey", 1)
+        val naturalMedicine:HashMap<String, Int> = HashMap()
+        naturalMedicine["honey"] = 1
 
         for (place in userMap.places){
             val latLng = LatLng(place.latitude, place.longitude)
@@ -1160,10 +1081,11 @@ public class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    private lateinit var constraintLayout: ConstraintLayout
+    //private lateinit var constraintLayout: ConstraintLayout
 
 }
 
+/*
 fun loadPlacePicker()
 {
     try{
@@ -1174,3 +1096,4 @@ fun loadPlacePicker()
         e.printStackTrace()
     }
 }
+*/
