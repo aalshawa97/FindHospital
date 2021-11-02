@@ -1,7 +1,10 @@
 package com.example.findhospital.ui.map
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,37 +12,22 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.findhospital.R
 import com.example.findhospital.activity.MapsActivity
+import com.example.findhospital.data.Hospital
 import com.example.findhospital.databinding.FragmentDashboardBinding
-import java.util.*
-import android.content.Context
-import android.location.LocationManager
-import android.net.Uri
-import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.findhospital.models.Place
 import com.example.findhospital.models.UserMap
+import com.example.findhospital.utils.getJsonDataFromAsset
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.common.GooglePlayServicesRepairableException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
-import java.lang.ArithmeticException
-import java.lang.NullPointerException
-import java.sql.Connection
-import javax.xml.parsers.DocumentBuilder
-import com.example.findhospital.R
-import javax.xml.parsers.DocumentBuilderFactory
-import kotlin.concurrent.schedule
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import kotlinx.serialization.*
+import java.util.*
+import android.util.Base64
+import kotlinx.serialization.json.Json
 
 class DashboardFragment : Fragment() {
 
@@ -78,6 +66,14 @@ class DashboardFragment : Fragment() {
         }
         return "https://maps.googleapis.com/maps/api/streetview?parameters\n" +  gmmIntentUri
     }
+
+    val jsonFileString = context?.let { getJsonDataFromAsset(it, "hospitals.json") }
+    //Log.i("data", jsonFileString)
+
+    val gson = Gson()
+    val listPersonType = object : TypeToken<List<Hospital>>() {}.type
+
+    //hospitals.forEachIndexed { idx, person -> Logd("data", "> Item $idx:\n$hospital") }
 
     private fun isGooglePlayServicesAvailable(): Boolean {
         val apiAvailability = GoogleApiAvailability.getInstance()
@@ -134,11 +130,28 @@ class DashboardFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private val myHospital: Hospital = Hospital("Providence", 1.0, 1.0)
+    //val jsonData = JSON.stringify(myHospital.serializable, Hospital("Providence", 1.0, 1.0))
+    val dataList = listOf(Hospital("Providence", 1.0, 1.0),Hospital("Providence2", 1.0, 1.0))
+    val gsonObj : Gson = Gson()
+    val json : String = gson.toJson(myHospital)
+    //val jsonList = Json.encodeToString(dataList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Timer("SettingUp", false).schedule(30000) {
-            this@DashboardFragment.startActivity(Intent(activity,  MapsActivity::class.java))
+        try{
+            //var hospitalsList: List<Hospital> ?= gson.fromJson(jsonFileString, listPersonType)
+            //Serializing objects
+            Log.d("JSON: ",json) // {"providence": 1, 1, "providence": 21, 21}
+
+            //hospitalsList?.forEachIndexed { idx, hospital -> Log.i("Data", "> Item $idx:\n$hospital") }
+        }
+        catch (e : Exception){
+
+        }
+
+        this@DashboardFragment.startActivity(Intent(activity,  MapsActivity::class.java))
        // }
     }
     override fun onCreateView(
