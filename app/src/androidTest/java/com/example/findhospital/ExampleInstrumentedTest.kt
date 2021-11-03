@@ -21,4 +21,12 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.findhospital", appContext.packageName)
     }
+    @Test
+    fun givenTwoStrings_concatenateWithPlusOperator_thenEquals() {
+        val a = "Hello"
+        val b = "Baeldung"
+        val c = a + " " + b
+
+        assertEquals("Hello Baeldung", c)
+    }
 }

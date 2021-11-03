@@ -134,7 +134,26 @@ class DashboardFragment : Fragment() {
     //val jsonData = JSON.stringify(myHospital.serializable, Hospital("Providence", 1.0, 1.0))
     val dataList = listOf(Hospital("Providence", 1.0, 1.0),Hospital("Providence2", 1.0, 1.0))
     val gsonObj : Gson = Gson()
-    val json : String = gson.toJson(myHospital)
+    var json : String = gson.toJson(myHospital)
+    //Initialize the String Builder
+    val a = "Hello"
+    val b = "Baeldung"
+    val c = a + " " + b
+    var stringBuilder = c
+    /*
+    stringBuilder = StringBuilder("Post Details\n---------------------")
+    +Log.d("Kotlin",post.postHeading)
+    stringBuilder?.append("\nPost Heading: " + post.postHeading)
+    stringBuilder?.append("\nPost URL: " + post.postUrl)
+    stringBuilder?.append("\nPost Author: " + post.postAuthor)
+    stringBuilder?.append("\nTags:")
+    //get the all Tags
+
+    post.postTag?.forEach { tag -> stringBuilder?.append(tag + ",") }
+    //Display the all Json object in text View
+    textView?.setText(stringBuilder.toString())
+    */
+    //json = "{"latitude": 1.0,"longitude": 1.0, "name": "Providence" }";
     //val jsonList = Json.encodeToString(dataList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
