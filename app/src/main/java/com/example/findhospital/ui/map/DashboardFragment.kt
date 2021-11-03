@@ -129,17 +129,14 @@ class DashboardFragment : Fragment() {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
+
     private val binding get() = _binding!!
     private val myHospital: Hospital = Hospital("Providence", 1.0, 1.0)
     //val jsonData = JSON.stringify(myHospital.serializable, Hospital("Providence", 1.0, 1.0))
     val dataList = listOf(Hospital("Providence Mercantile", 40.3757484, -128.2353639),Hospital("Providence Bridgeport", 41.4442505,-119.2525712))
     val gsonObj : Gson = Gson()
     var json : String = gson.toJson(myHospital)
-    //Initialize the String Builder
-    val a = "Hello"
-    val b = "Baeldung"
-    val c = a + " " + b
-    var stringBuilder = c
+
     /*
     stringBuilder = StringBuilder("Post Details\n---------------------")
     +Log.d("Kotlin",post.postHeading)
