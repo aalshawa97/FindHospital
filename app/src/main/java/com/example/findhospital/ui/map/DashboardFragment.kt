@@ -132,7 +132,7 @@ class DashboardFragment : Fragment() {
     private val binding get() = _binding!!
     private val myHospital: Hospital = Hospital("Providence", 1.0, 1.0)
     //val jsonData = JSON.stringify(myHospital.serializable, Hospital("Providence", 1.0, 1.0))
-    val dataList = listOf(Hospital("Providence", 1.0, 1.0),Hospital("Providence2", 1.0, 1.0))
+    val dataList = listOf(Hospital("Providence Mercantile", 40.3757484, -128.2353639),Hospital("Providence Bridgeport", 41.4442505,-119.2525712))
     val gsonObj : Gson = Gson()
     var json : String = gson.toJson(myHospital)
     //Initialize the String Builder

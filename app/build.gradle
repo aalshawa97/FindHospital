@@ -43,7 +43,6 @@ dependencies {
     // Add the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics:19.0.2'
     implementation 'com.google.firebase:firebase-database:20.0.2'
-    implementation 'com.google.firebase:firebase-database:20.0.2'
     implementation 'com.firebaseui:firebase-ui:x.x.x'
     // Add the dependencies for any other Firebase products you want to use in your app
     // For example, to also use Firebase Authentication
