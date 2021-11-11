@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.serialization.*
 import java.util.*
 import android.util.Base64
+import com.google.android.gms.common.util.CollectionUtils.listOf
 import kotlinx.serialization.json.Json
 
 class DashboardFragment : Fragment() {
