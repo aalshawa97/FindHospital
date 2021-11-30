@@ -20,6 +20,12 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val TAG = "MainActivity"
+        const val BASE_URL = "https://covidtracking.com/api/v1/"
+        const val ALL_STATES = "All (Nationwide)"
+    }
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var listAdapter: MyAdapter
     private val contactsList: ArrayList<Hospital> = ArrayList()
