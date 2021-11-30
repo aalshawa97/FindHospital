@@ -13,6 +13,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findhospital.R
 import com.example.findhospital.databinding.ActivityMainBinding
+import com.example.findhospital.ui.graph.CovidData
+import com.example.findhospital.ui.graph.CovidSparkAdapter
 import com.example.findhospital.ui.list.Hospital
 import com.example.findhospital.ui.list.MyAdapter
 import java.lang.NullPointerException
@@ -25,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         const val BASE_URL = "https://covidtracking.com/api/v1/"
         const val ALL_STATES = "All (Nationwide)"
     }
-
+    private lateinit var adapter: CovidSparkAdapter
+    private lateinit var currentlyShownData: List<CovidData>
+    private lateinit var perStateDailyData: Map<String, List<CovidData>>
+    private lateinit var nationalDailyData: List<CovidData>
     private lateinit var binding: ActivityMainBinding
     private lateinit var listAdapter: MyAdapter
     private val contactsList: ArrayList<Hospital> = ArrayList()
