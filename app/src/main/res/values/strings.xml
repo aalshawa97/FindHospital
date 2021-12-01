@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">FindHospital</string>
     <string name="state">State</string>
+    <string name="negative">Negative</string>
+    <string name="deaths">Deaths</string>
+    <string name="positive">Positive</string>
+    <string name="week">1 Week</string>
+    <string name="month">1 Month</string>
+    <string name="max">Max</string>
     <string name="title_home">List</string>
     <string name="title_dashboard">Map</string>
     <string name="title_notifications">Chat</string>

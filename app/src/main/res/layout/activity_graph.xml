@@ -52,19 +52,19 @@
             android:id="@+id/radioButtonNegative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Negative" />
+            android:text="@+string/negative"/>
 
         <RadioButton
             android:id="@+id/radioButtonPositive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Positive" />
+            android:text="@+string/positive" />
 
         <RadioButton
             android:id="@+id/radioButtonDeath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deaths" />
+            android:text="@+string/deaths" />
     </RadioGroup>
 
     <com.robinhood.spark.SparkView
@@ -93,19 +93,19 @@
             android:id="@+id/radioButtonWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 Week" />
+            android:text="@+string/week" />
 
         <RadioButton
             android:id="@+id/radioButtonMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 Month" />
+            android:text="@+string/month" />
 
         <RadioButton
             android:id="@+id/radioButtonMax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Max" />
+            android:text="@+string/max" />
     </RadioGroup>
 
     <TextView
