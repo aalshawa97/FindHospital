@@ -47,4 +47,5 @@
     <string name="for_example_providence_newberg">For example Providence Newberg</string>
     <string name="com_example_findhospital_ui_list_hospitallistviewmodel">com.example.findhospital.ui.list.HospitalListViewModel</string>
     <string name="title_covid_tracker">Covid tracker</string>
+    <string name="app_description">COVID tracker</string>
 </resources>

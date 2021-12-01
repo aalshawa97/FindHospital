@@ -14,6 +14,9 @@ import com.example.findhospital.activity.MainActivityJ
 import com.example.findhospital.databinding.ActivityHomeBinding
 import com.example.findhospital.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.NumberFormat
@@ -32,23 +35,19 @@ class GraphFragment : Fragment(){
     private lateinit var perStateDailyData: Map<String, List<CovidData>>
     private lateinit var nationalDailyData: List<CovidData>
 
+    /*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //var binding : ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)lkl
-        //setContentView(R.layout.activity_graph)
+        setContentView(R.layout.activity_main)
+        supportActionBar?.title = getString(R.string.app_description)
+
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
         val covidService = retrofit.create(CovidService::class.java)
-        //supportActionBar?.title = getString(R.string.app_description)
 
-        //val intent = Intent(this,GraphFragment::class.java)
-        //startActivity(intent)
-        //this@GraphFragment.startActivity(Intent(activity, MainActivityJ::class.java))
-        //var binding : ViewDataBinding? = DataBindingUtil.setContentView(this, R.layout.activity_graph)
-        /*
         covidService.getNationalData().enqueue(object : Callback<List<CovidData>> {
             override fun onFailure(call: Call<List<CovidData>>, t: Throwable) {
                 Log.e(TAG, "onFailure $t")
@@ -101,9 +100,60 @@ class GraphFragment : Fragment(){
                 updateSpinnerWithStateData(perStateDailyData.keys)
             }
         })
-         */
-    }
+    }*/
 }
+        //supportActionBar?.title = getString(R.string.app_description)
+
+        //val intent = Intent(this,GraphFragment::class.java)
+        //startActivity(intent)
+        //this@GraphFragment.startActivity(Intent(activity, MainActivityJ::class.java))
+        //var binding : ViewDataBinding? = DataBindingUtil.setContentView(this, R.layout.activity_graph)
+        /*
+
+
+
+
+                setupEventListeners()
+                nationalDailyData = nationalData.reversed()
+                Log.i(TAG, "Update graph with national data")
+                updateDisplayWithData(nationalDailyData)
+            }
+        })
+
+        covidService.getStatesData().enqueue(object : Callback<List<CovidData>> {
+            override fun onFailure(call: Call<List<CovidData>>, t: Throwable) {
+                Log.e(TAG, "onFailure $t")
+            }
+
+            override fun onResponse(
+                call: Call<List<CovidData>>,
+                response: Response<List<CovidData>>
+            ) {
+                Log.i(TAG, "onResponse $response")
+                val statesData = response.body()
+                if (statesData == null) {
+                    Log.w(TAG, "Did not receive a valid response body")
+                    return
+                }
+
+                perStateDailyData = statesData
+                    .filter { it.dateChecked != null }
+                    .map { // State data may have negative deltas, which don't make sense to graph
+                        CovidData(
+                            it.dateChecked,
+                            it.positiveIncrease.coerceAtLeast(0),
+                            it.negativeIncrease.coerceAtLeast(0),
+                            it.deathIncrease.coerceAtLeast(0),
+                            it.state
+                        ) }
+                    .reversed()
+                    .groupBy { it.state }
+                Log.i(TAG, "Update spinner with state names")
+                updateSpinnerWithStateData(perStateDailyData.keys)
+            }
+        })
+         */
+
 
 /*
 
