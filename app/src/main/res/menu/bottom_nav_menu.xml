@@ -16,4 +16,9 @@
         android:icon="@android:drawable/sym_action_chat"
         android:title="@string/title_notifications" />
 
+    <item
+        android:id="@+id/covid_tracker"
+        android:icon="@android:drawable/checkbox_off_background"
+        android:title="@string/title_covid_tracker" />
+
 </menu>

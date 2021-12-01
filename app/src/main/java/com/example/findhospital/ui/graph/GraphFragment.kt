@@ -5,20 +5,22 @@ import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import com.example.findhospital.R
+import com.example.findhospital.activity.MainActivityJ
+import com.example.findhospital.databinding.ActivityHomeBinding
+import com.example.findhospital.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class GraphFragment {
-}
-
-/*
-
-
-
-class MainActivity : AppCompatActivity() {
-
+class GraphFragment : Fragment(){
     companion object {
         const val TAG = "MainActivity"
         const val BASE_URL = "https://covidtracking.com/api/v1/"
@@ -32,16 +34,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        supportActionBar?.title = getString(R.string.app_description)
-
+        //var binding : ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)lkl
+        //setContentView(R.layout.activity_graph)
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
         val covidService = retrofit.create(CovidService::class.java)
+        //supportActionBar?.title = getString(R.string.app_description)
 
+        //val intent = Intent(this,GraphFragment::class.java)
+        //startActivity(intent)
+        //this@GraphFragment.startActivity(Intent(activity, MainActivityJ::class.java))
+        //var binding : ViewDataBinding? = DataBindingUtil.setContentView(this, R.layout.activity_graph)
+        /*
         covidService.getNationalData().enqueue(object : Callback<List<CovidData>> {
             override fun onFailure(call: Call<List<CovidData>>, t: Throwable) {
                 Log.e(TAG, "onFailure $t")
@@ -94,7 +101,15 @@ class MainActivity : AppCompatActivity() {
                 updateSpinnerWithStateData(perStateDailyData.keys)
             }
         })
+         */
     }
+}
+
+/*
+
+
+
+class MainActivity : AppCompatActivity() {
 
     private fun updateSpinnerWithStateData(stateNames: Set<String>) {
         val stateAbbreviationList = stateNames.toMutableList()

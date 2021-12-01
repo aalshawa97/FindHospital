@@ -3,9 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_chat.xml" value="0.27239583333333334" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_graph.xml" value="0.16979166666666667" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_home.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_login.xml" value="0.27239583333333334" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_main.xml" value="0.25170068027210885" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_main_maps_view_model.xml" value="0.1" />
         <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_main_view_model.xml" value="0.16" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_phone.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/activity_show_hospitals.xml" value="0.2598958333333333" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_dashboard.xml" value="0.2624113475177305" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_hospital_list.xml" value="0.1" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/fragment_notifications.xml" value="0.27239583333333334" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/layout/recycler_view.xml" value="0.27239583333333334" />
+        <entry key="..\:/Users/15039/AndroidStudioProjects/FindHospital/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
   </component>
