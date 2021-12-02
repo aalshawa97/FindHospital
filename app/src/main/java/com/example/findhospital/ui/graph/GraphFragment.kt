@@ -37,7 +37,12 @@ class GraphFragment : Fragment() {
         const val BASE_URL = "https://covidtracking.com/api/v1/"
         const val ALL_STATES = "All (Nationwide)"
     }
-    
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //supportActionBar?.title = getString(R.string.app_description)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -27,7 +27,7 @@ class HospitalListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Timer("SettingUp", false).schedule(30000) {
-            this@HospitalListFragment.startActivity(Intent(activity,  RecyclerActivity::class.java))
+        this@HospitalListFragment.startActivity(Intent(activity,  RecyclerActivity::class.java))
         //}
     }
 
