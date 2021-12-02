@@ -119,7 +119,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="May 31, 2020" />
 
-    <!--
     <com.robinhood.ticker.TickerView
         android:id="@+id/tickerView"
         android:layout_width="wrap_content"
@@ -130,6 +129,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvDateLabel"
         tools:text="4,354" />
-    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
