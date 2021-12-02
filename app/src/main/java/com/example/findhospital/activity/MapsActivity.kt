@@ -62,7 +62,6 @@ private fun Context.getService(): Nothing? {
 
 /*
 fun onMenuOptionClick() = Unit
-
 fun onClick()
 {
     try
@@ -72,7 +71,6 @@ fun onClick()
     {
     }
 }
-
 fun onCreateOptionsMenu(menu: Menu) {
     onCreateOptionsMenu(menu)
     //ObjectRenderer()
@@ -200,7 +198,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val locationRequestPriority = "PRIORITY_HIGH_ACCURACY"
         val careType = "Express"
     }
-
     fun onActivityResult(){
         val resultCode = 0
         if(resultCode == RESULT_OK)
@@ -1089,7 +1086,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 fun loadPlacePicker()
 {
     try{
-
     }
     catch (e: GooglePlayServicesRepairableException)
     {

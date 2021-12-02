@@ -1,5 +1,4 @@
 /*package com.example.findhospital.activity
-
 import com.example.findhospital.R
 import android.content.Intent
 import android.os.Bundle
@@ -15,13 +14,11 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
 class FirebaseMainActivity : AppCompatActivity() {
     private var firebaseAuth: FirebaseAuth? = null
     private var authStateListener: FirebaseAuth.AuthStateListener? = null
     private var googleApiClient: GoogleApiClient? = null
     private lateinit var list_viw : ListView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -35,30 +32,23 @@ class FirebaseMainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
         googleApiClient = GoogleApiClient.Builder(this).addApi(Auth.GOOGLE_SIGN_IN_API).build()
     }
-
     private fun signOut() {
         if (firebaseAuth != null) {
             firebaseAuth!!.signOut()
         }
-
         if (googleApiClient!!.isConnected) {
             Auth.GoogleSignInApi.signOut(googleApiClient)
         }
     }
-
     private fun encrypt() {
         Toast.makeText(this, "Encrypting", Toast.LENGTH_LONG).show()
-
     }
-
     override fun onStart() {
         super.onStart()
         googleApiClient!!.connect()
         firebaseAuth!!.addAuthStateListener(this.authStateListener!!)
-
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
             val fromUid = firebaseUser.uid
@@ -81,7 +71,6 @@ class FirebaseMainActivity : AppCompatActivity() {
                                     listOfToUsers.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
-
                                 val arrayAdapter = ArrayAdapter(this, R.layout.simple_list_item_1, listOfToUserNames)
                                 list_viw.adapter = arrayAdapter
                                 list_viw.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
@@ -98,22 +87,17 @@ class FirebaseMainActivity : AppCompatActivity() {
             }
         }
     }
-
     override fun onStop() {
         super.onStop()
-
         if (googleApiClient!!.isConnected) {
             googleApiClient!!.disconnect()
         }
-
         firebaseAuth!!.removeAuthStateListener(this.authStateListener!!)
     }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
-
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.add_friend -> {
@@ -121,27 +105,21 @@ class FirebaseMainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
-
             R.id.sign_out_button -> {
                 signOut()
                 true
             }
-
             R.id.encrypt_button -> {
                 encrypt()
                 val intent = Intent(this, MainActivityJ::class.java)
                 startActivity(intent)
                 true
             }
-
-
             else -> super.onOptionsItemSelected(menuItem)
         }
     }
-
     companion object {
         //private const val TAG = "MainActivityTag"
     }
-
 }
 */

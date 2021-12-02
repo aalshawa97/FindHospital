@@ -30,19 +30,16 @@ import android.util.Log
 import android.widget.*
 /*
 import com.example.findhospital.activity.ContactsActivity.Companion.PERMISSIONS_REQUEST_READ_CONTACTS
-
 class ContactsActivity: AppCompatActivity() {
     companion object {
         val PERMISSIONS_REQUEST_READ_CONTACTS = 100
     }
-
     lateinit var aName : EditText
     lateinit var aEmail : EditText
     lateinit var aPhone : EditText
     var list_viw : ListView? = null
     var button : Button? = null
     //var anAddContact = findViewById<Button>(R.id.btnAdd)
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +76,6 @@ class ContactsActivity: AppCompatActivity() {
                 //textView4.setText(inputValue).toString()
             }
         }
-
         Toast.makeText(this, "Please add your contact", Toast.LENGTH_LONG).show()
         addContact()
         //addContact("Shahid Mohmammed", "2134368227")
@@ -109,7 +105,6 @@ class ContactsActivity: AppCompatActivity() {
                                     listOfToUsers.add(toUser)
                                     listOfRooms.add(d.id)
                                 }
-
                                 val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listOfToUserNames)
                                 list_viw.adapter = arrayAdapter
                                 list_viw.onItemClickListener = AdapterView.OnItemClickListener{_, _, position, _ ->
@@ -127,12 +122,9 @@ class ContactsActivity: AppCompatActivity() {
             }
         }
         //loadContacts.setOnClickListener { loadContacts() }
-
     }
-
     private fun loadContacts() {
         var builder = StringBuilder()
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
                 android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(android.Manifest.permission.READ_CONTACTS),
@@ -144,31 +136,26 @@ class ContactsActivity: AppCompatActivity() {
             //listContacts.text = builder.toString()
         }
     }
-
     private fun getPhoneContacts()
     {
         //if()
     }
-
     /*
     private fun getContacts(): StringBuilder {
         val builder = StringBuilder()
         val resolver: ContentResolver = contentResolver;
         val cursor = resolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null,
             null)
-
         if (cursor.count > 0) {
             while (cursor.moveToNext()) {
                 val id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
                 val name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
                 val phoneNumber = (cursor.getString(
                     cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))).toInt()
-
                 if (phoneNumber > 0) {
                     val cursorPhone = contentResolver.query(
                         ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                         null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=?", arrayOf(id), null)
-
                     if (cursorPhone != null) {
                         if(cursorPhone.count > 0) {
                             while (cursorPhone.moveToNext()) {
@@ -193,7 +180,6 @@ class ContactsActivity: AppCompatActivity() {
     }
 }
 */
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
                                             grantResults: IntArray) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
@@ -204,7 +190,6 @@ class ContactsActivity: AppCompatActivity() {
             }
         }
     }
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun addContact() {
         val op_list = ArrayList<ContentProviderOperation>()
@@ -217,7 +202,6 @@ class ContactsActivity: AppCompatActivity() {
                 ) //.withValue(RawContacts.AGGREGATION_MODE, RawContacts.AGGREGATION_MODE_DEFAULT)
                 .build()
         )
-
         //First and last names
         op_list.add(
             ContentProviderOperation.newInsert(CONTENT_URI)
@@ -249,7 +233,6 @@ class ContactsActivity: AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
     private fun addContacts(name: String, phone: String) {
         /*
         val values = ContentValues()
@@ -266,7 +249,6 @@ class ContactsActivity: AppCompatActivity() {
         Log.d("CONTACT", "" + updateUri)
         */
     }
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun addContact(name: String, phone: String) {
         val values = ContentValues()
@@ -292,7 +274,6 @@ class ContactsActivity: AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.drawer_layout, mFragment);   // < - first problem ( see ad. 1)
         .commit()  // <-  third problem (see ad. 3)
-
         // second problem ( see ad. 2)
         mFragment = new AnnouncementFragment ();
         Bundle args = new Bundle();
@@ -301,7 +282,6 @@ class ContactsActivity: AppCompatActivity() {
     }
     */
     /*
-
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
     Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
         requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS),
@@ -312,7 +292,6 @@ class ContactsActivity: AppCompatActivity() {
         listContacts.text = builder.toString()
     }
 }
-
 override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
                                         grantResults: IntArray) {
     if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
@@ -324,14 +303,12 @@ override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out
     }
 }
 */
-
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             android.R.id.home -> {
                 finish()
                 true
             }
-
             else -> super.onOptionsItemSelected(menuItem)
         }
     }

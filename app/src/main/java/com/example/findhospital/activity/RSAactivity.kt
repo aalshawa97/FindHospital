@@ -93,7 +93,6 @@ class RSAactivity : AppCompatActivity() {
            .replace("\\n", "")
            .replace("-----BEGIN PUBLIC KEY-----", "")
            .replace("-----END PUBLIC KEY-----", "")
-
         */
 
     /*
@@ -109,8 +108,6 @@ class RSAactivity : AppCompatActivity() {
    val rsaPub: RSAPublicKey = fileGeneratedPublicKey as RSAPublicKey
    val publicKeyModulus: BigInteger = rsaPub.modulus
    val publicKeyExponent: BigInteger = rsaPub.publicExponent
-
-
    val keyFactoryAlt = KeyFactory.getInstance("RSA")
    val pubKeySpec = RSAPublicKeySpec(publicKeyModulus, publicKeyExponent)
    val key = keyFactoryAlt.generatePublic(pubKeySpec) as RSAPublicKey
