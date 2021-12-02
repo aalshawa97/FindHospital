@@ -23,12 +23,37 @@ import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class GraphFragment : Fragment(){
+import android.widget.LinearLayout
+
+import android.view.ViewGroup
+
+import android.view.LayoutInflater
+import android.view.View
+
+
+class GraphFragment : Fragment() {
     companion object {
         const val TAG = "MainActivity"
         const val BASE_URL = "https://covidtracking.com/api/v1/"
         const val ALL_STATES = "All (Nationwide)"
     }
+    
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(com.example.findhospital.R.layout.activity_graph, container, false)
+
+        // add the data here if necessary
+        // ...
+        val layout = view.findViewById(com.example.findhospital.R.id.tickerView) as LinearLayout
+        layout.addView(view)
+        return view
+    } // ...
+}
+/*
+class GraphFragment : Fragment(){
 
     private lateinit var adapter: CovidSparkAdapter
     private lateinit var currentlyShownData: List<CovidData>
@@ -155,7 +180,7 @@ class GraphFragment : Fragment(){
          */
 
 
-/*
+
 
 
 
