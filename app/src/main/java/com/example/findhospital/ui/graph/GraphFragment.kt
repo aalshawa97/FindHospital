@@ -1,6 +1,5 @@
 package com.example.findhospital.ui.graph
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -8,9 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import com.example.findhospital.R
-import com.example.findhospital.activity.MainActivityJ
 import com.example.findhospital.databinding.ActivityHomeBinding
 import com.example.findhospital.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
@@ -22,15 +19,64 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
-
 import android.widget.LinearLayout
-
-import android.view.ViewGroup
-
+import com.example.findhospital.ui.list.HospitalListViewModel
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.findhospital.activity.RecyclerActivity
+import com.example.findhospital.databinding.FragmentHospitalListBinding
+import java.util.*
+
+class GraphFragment : Fragment() {
+
+    private lateinit var hospitalListViewModel: HospitalListViewModel
+    private var _binding: FragmentHospitalListBinding? = null
+    //private var intent :Intent =  Intent(activity,  RecyclerActivity::class.java)
 
 
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //Timer("SettingUp", false).schedule(30000) {
+        this@GraphFragment.startActivity(Intent(activity,  RecyclerActivity::class.java))
+        //}
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        hospitalListViewModel =
+            ViewModelProvider(this).get(HospitalListViewModel::class.java)
+
+        _binding = FragmentHospitalListBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        val textView: TextView = binding.textHome
+        hospitalListViewModel.text.observe(viewLifecycleOwner, Observer {
+            textView.text = it
+        })
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
+/*
 class GraphFragment : Fragment() {
     companion object {
         const val TAG = "MainActivity"
@@ -57,6 +103,7 @@ class GraphFragment : Fragment() {
         return view
     } // ...
 }
+*/
 /*
 class GraphFragment : Fragment(){
 

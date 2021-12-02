@@ -433,29 +433,20 @@ public class MainActivityJ extends AppCompatActivity {
 
                 /*
                 int ascii = 0;
-
                     //Key for encryption
                     int key = 1;
-
                     for (int i = 0; i<tempMessageText.length(); i++)
                     {
                         tempMessageText.setCharAt(i,toUpperCase(tempMessageText.charAt(i)));
                         ascii = ((((int)tempMessageText.charAt(i)-65 + key) %26) + 65);
                         tempMessageText.setCharAt(i,(char)ascii);
                     }
-
                 //Here is where I am trying to convert a message to a number so that I can encrypt it with my RSA functions
-
                  long plainText = 100;
-
                 //Get the plaintext from the textview
-
                 //Toast.makeText(getApplicationContext(),"This is an RSA tutorial, please enter numbers only!", Toast.LENGTH_LONG).show();
-
                 StringBuilder tempPlainText = new StringBuilder(model.getMessageText());
-
                 Log.d("Original plaintext: ", (tempPlainText.toString()));
-
                 try
                 {
                     plainText = Long.parseLong(stringToLong(tempPlainText.toString()));
@@ -464,7 +455,6 @@ public class MainActivityJ extends AppCompatActivity {
                 {
                     Log.d("Encyrption", "populateView: " + e.toString());
                 }
-
                 Log.d("Encrypted plaintext: ", String.valueOf(tempMessageText));
                 */
                 //Encrypt messages with RSA
@@ -622,8 +612,6 @@ public class MainActivityJ extends AppCompatActivity {
                 /*
                 int key = 1;
                 int ascii = 0;
-
-
                 for (int i = 0; i<messageText.getText().length(); i++)
                 {
                     tempMessageText.setCharAt(i,toUpperCase(tempMessageText.charAt(i)));
@@ -677,9 +665,7 @@ public class MainActivityJ extends AppCompatActivity {
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class, R.layout.list_item, FirebaseDatabase.getInstance().getReference()) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
-
                 adapter.getRef(0).child("-KeVKcb1pqDchA75i-Jd").setValue("I can update this");
-
             }
         };
         */
@@ -690,17 +676,11 @@ public class MainActivityJ extends AppCompatActivity {
                 /*
                         StringBuilder decryptedMessage = new StringBuilder(messageText.toString());
                         int ascii = 0;
-
                         for (int i = 0; i<decryptedMessage.length(); i++)
                         {
-
                             decryptedMessage.setCharAt(i,toLowerCase(decryptedMessage.charAt(i)));
-
                             ascii = ((((int)decryptedMessage.charAt(i) - 97 - (int) valueKey.charAt(0) + 26) %26) + 97);
                             decryptedMessage.setCharAt(i,(char)ascii);
-
-
-
                         }
                         */
 
