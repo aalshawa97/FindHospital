@@ -33,6 +33,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.findhospital.activity.RecyclerActivity
 import com.example.findhospital.databinding.FragmentHospitalListBinding
+import kotlinx.android.synthetic.main.*
+import org.w3c.dom.Text
 import java.util.*
 
 class GraphFragment : Fragment() {
@@ -40,7 +42,6 @@ class GraphFragment : Fragment() {
     private var updateOn : Boolean = false
 
     //Location request is a config file for all settings related to FusedLocationProviderClient
-
 
     private lateinit var hospitalListViewModel: HospitalListViewModel
     private var _binding: FragmentHospitalListBinding? = null
@@ -51,14 +52,26 @@ class GraphFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var sw_locationUpdates : Switch
-    private fun onLocationUpdated(){
+    private lateinit var sw_gps : Switch
+    private lateinit var tv_lat : TextView
+    private lateinit var tv_lon : TextView
+    private lateinit var tv_altitude : TextView
+    private lateinit var tv_accuracy : TextView
+    private lateinit var tv_speed : TextView
+    private lateinit var tv_sensor : TextView
+    private lateinit var tv_updates : TextView
+    private lateinit var tv_address : TextView
 
+    private fun startLocationUpdates(){
+        tv_updates.setText("Not tracking location")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Timer("SettingUp", false).schedule(30000) {
         this@GraphFragment.startActivity(Intent(activity,  RecyclerActivity::class.java))
+        //tv_updates = findViewById(R.id.tv_updates)
+
         //}
     }
 
@@ -67,6 +80,20 @@ class GraphFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view: View = inflater.inflate(R.layout.activity_chat, container, false)
+        //Give each UI variable a value
+        tv_lat = view.findViewById(R.id.tv_lat)
+        tv_lon = view.findViewById(R.id.tv_lon)
+        tv_altitude = view.findViewById(R.id.tv_altitude)
+        tv_accuracy = view.findViewById(R.id.tv_accuracy)
+        tv_speed = view.findViewById(R.id.tv_speed)
+        tv_sensor = view.findViewById(R.id.tv_sensor)
+        tv_updates = view.findViewById(R.id.tv_updates)
+        tv_address = view.findViewById(R.id.tv_address)
+        tv_lat = view.findViewById(R.id.tv_lat)
+        sw_gps = view.findViewById(R.id.sw_gps)
+        sw_locationUpdates = view.findViewById(R.id.sw_locationsupdates)
+
         hospitalListViewModel =
             ViewModelProvider(this).get(HospitalListViewModel::class.java)
 
