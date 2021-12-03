@@ -68,6 +68,7 @@ dependencies {
     // Firebase-UI
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+    apply plugin: 'kotlin-android-extensions'
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.56'
     implementation 'org.bouncycastle:bcprov-jdk15on:1.65'
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
