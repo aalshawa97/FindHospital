@@ -26,6 +26,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -36,6 +37,11 @@ import java.util.*
 
 class GraphFragment : Fragment() {
 
+    private var updateOn : Boolean = false
+
+    //Location request is a config file for all settings related to FusedLocationProviderClient
+
+
     private lateinit var hospitalListViewModel: HospitalListViewModel
     private var _binding: FragmentHospitalListBinding? = null
     //private var intent :Intent =  Intent(activity,  RecyclerActivity::class.java)
@@ -44,6 +50,10 @@ class GraphFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private lateinit var sw_locationUpdates : Switch
+    private fun onLocationUpdated(){
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
