@@ -41,6 +41,8 @@ import java.util.*
 class GraphFragment : Fragment() {
 
     private var updateOn : Boolean = false
+    private var DEFAULT_UPDATE_INTERVAL : Int = 30
+    private var FAST_UPDATE_INTERVAL : Int = 5
 
     //Location request is a config file for all settings related to FusedLocationProviderClient
 
