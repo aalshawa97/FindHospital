@@ -33,6 +33,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.findhospital.activity.RecyclerActivity
 import com.example.findhospital.databinding.FragmentHospitalListBinding
+import com.google.android.gms.location.LocationRequest
 import kotlinx.android.synthetic.main.*
 import org.w3c.dom.Text
 import java.util.*
@@ -64,6 +65,14 @@ class GraphFragment : Fragment() {
 
     private fun startLocationUpdates(){
         tv_updates.setText("Not tracking location")
+        tv_lat.setText("Not tracking location")
+        tv_lon.setText("Not tracking location")
+        tv_speed.setText("Not tracking location")
+        tv_accuracy.setText("Not tracking location")
+        tv_altitude.setText("Not tracking location")
+        tv_sensor.setText("Not tracking location")
+
+        //fusedLocationProviderClient.removeLocationUpdates(locationCallBack);
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +103,11 @@ class GraphFragment : Fragment() {
         sw_gps = view.findViewById(R.id.sw_gps)
         sw_locationUpdates = view.findViewById(R.id.sw_locationsupdates)
 
+        //private lateinit var locationRequest : LocationRequest();
+
+        //Set all the properties of LocationRequest
+        //locationRequest = LocationRequest();
+
         hospitalListViewModel =
             ViewModelProvider(this).get(HospitalListViewModel::class.java)
 
@@ -112,6 +126,10 @@ class GraphFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+private fun stopLocationUpdates(){
+    //tv_up
 }
 /*
 class GraphFragment : Fragment() {
