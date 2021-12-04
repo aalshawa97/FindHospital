@@ -63,6 +63,11 @@ class GraphFragment : Fragment() {
     private lateinit var tv_updates : TextView
     private lateinit var tv_address : TextView
 
+    private fun stopLocationUpdates(){
+        tv_updates.setText("Location is being tracked")
+        //fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallBack, null)
+    }
+
     private fun startLocationUpdates(){
         tv_updates.setText("Not tracking location")
         tv_lat.setText("Not tracking location")
