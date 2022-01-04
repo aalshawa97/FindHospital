@@ -25,7 +25,8 @@
     <string name="make_call">Make call</string>
     <string name="login">Login</string>
     <string name="title_activity_recycler">Recycler Activity</string>
-    <string name="calling">Calling</string>
+    <string name="calling">Call</string>
+    <string name="myNumber">1-800-232-0233</string>
     <string name="image_call_hint">Call</string>
     <string name="hello">Hello</string>
     <string name="send">Send</string>
@@ -36,6 +37,9 @@
     <string name="add_contact">Add contact</string>
     <string name="name">Name</string>
     <string name="begin_login">Login</string>
+    <string name="cdc_contact">CDC info for covid vaccine</string>
+    <string name="sign_in_with_google">Google sign in</string>
+    <string name="hiring">Hiring</string>
     <string name="profile_picture">Profile picture</string>
     <string name="select_image">Select image</string>
     <string name="chat">Chat</string>
