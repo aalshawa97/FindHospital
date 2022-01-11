@@ -46,88 +46,86 @@ open class ChatActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         try {
             val fromUser = intent.extras?.get("fromUser") as User
+            fromUid = fromUser.uid
+            var fromRooms = fromUser.rooms
+            val toUser = intent.extras?.get("toUser") as User
+            val toUid = toUser.uid
+            var toRooms = toUser.rooms
 
-        fromUid = fromUser.uid
-        var fromRooms = fromUser.rooms
-        val toUser = intent.extras?.get("toUser") as User
-        val toUid = toUser.uid
-        var toRooms = toUser.rooms
+            var roomId = intent.extras?.get("roomId") as String
 
-        var roomId = intent.extras?.get("roomId") as String
-
-        if (roomId == "noRoomId") {
-            roomId = rootRef!!.collection("messages").document().id
-            if (fromRooms != null) {
-                for ((key, _) in fromRooms) {
-                    if (toRooms != null) {
-                        if (toRooms.contains(key)) {
-                            roomId = key
+            if (roomId == "noRoomId") {
+                roomId = rootRef!!.collection("messages").document().id
+                if (fromRooms != null) {
+                    for ((key, _) in fromRooms) {
+                        if (toRooms != null) {
+                            if (toRooms.contains(key)) {
+                                roomId = key
+                            }
                         }
                     }
                 }
             }
-        }
 
-        val button = findViewById<Button>(R.id.button)
-        val edit_text = findViewById<EditText>(R.id.edit_text)
+            val button = findViewById<Button>(R.id.button)
+            val edit_text = findViewById<EditText>(R.id.edit_text)
 
-        button.setOnClickListener {
-            if (fromRooms == null) {
-                fromRooms = mutableMapOf()
+            button.setOnClickListener {
+                if (fromRooms == null) {
+                    fromRooms = mutableMapOf()
+                }
+                fromRooms!![roomId] = true
+                fromUser.rooms = fromRooms
+                rootRef!!.collection("users").document(fromUid!!).set(fromUser, SetOptions.merge())
+                rootRef!!.collection("contacts").document(toUid).collection("userContacts").document(fromUid!!).set(fromUser, SetOptions.merge())
+                rootRef!!.collection("rooms").document(toUid).collection("userRooms").document(roomId).set(fromUser, SetOptions.merge())
+
+                if (toRooms == null) {
+                    toRooms = mutableMapOf()
+                }
+                toRooms!![roomId] = true
+                toUser.rooms = toRooms
+                rootRef!!.collection("users").document(toUid).set(toUser, SetOptions.merge())
+                rootRef!!.collection("contacts").document(fromUid!!).collection("userContacts").document(toUid).set(toUser, SetOptions.merge())
+                rootRef!!.collection("rooms").document(fromUid!!).collection("userRooms").document(roomId).set(toUser, SetOptions.merge())
+
+                val messageText = edit_text.text.toString()
+                val message = Message(messageText, fromUid!!)
+                rootRef!!.collection("messages").document(roomId).collection("roomMessages").add(message)
+                edit_text.text.clear()
             }
-            fromRooms!![roomId] = true
-            fromUser.rooms = fromRooms
-            rootRef!!.collection("users").document(fromUid!!).set(fromUser, SetOptions.merge())
-            rootRef!!.collection("contacts").document(toUid).collection("userContacts").document(fromUid!!).set(fromUser, SetOptions.merge())
-            rootRef!!.collection("rooms").document(toUid).collection("userRooms").document(roomId).set(fromUser, SetOptions.merge())
 
-            if (toRooms == null) {
-                toRooms = mutableMapOf()
+            val query = rootRef!!.collection("messages").document(roomId).collection("roomMessages").orderBy("sentAt", Query.Direction.ASCENDING)
+            val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
+            adapter = MessageAdapter(options)
+            recycler_view.adapter = adapter
+
+            title = toUser.userName
+
+            //Testing RSA
+            encrypt("This is secret!")
+
+            try {
+                //cipher = Cipher.getInstance("RSA")
+                val keyBytes = byteArrayOfInts(0xA1, 0x2E, 0x38, 0xD4, 0x89, 0xC3)
+                val secretKey: SecretKey = SecretKeySpec(keyBytes, "AES")
+                //cipher.init()
+                //decipher = Cipher.getInstance("AES")
             }
-            toRooms!![roomId] = true
-            toUser.rooms = toRooms
-            rootRef!!.collection("users").document(toUid).set(toUser, SetOptions.merge())
-            rootRef!!.collection("contacts").document(fromUid!!).collection("userContacts").document(toUid).set(toUser, SetOptions.merge())
-            rootRef!!.collection("rooms").document(fromUid!!).collection("userRooms").document(roomId).set(toUser, SetOptions.merge())
+            catch(e: NoSuchAlgorithmException)
+            {
+                e.printStackTrace()
+            }
 
-            val messageText = edit_text.text.toString()
-            val message = Message(messageText, fromUid!!)
-            rootRef!!.collection("messages").document(roomId).collection("roomMessages").add(message)
-            edit_text.text.clear()
-        }
-
-        val query = rootRef!!.collection("messages").document(roomId).collection("roomMessages").orderBy("sentAt", Query.Direction.ASCENDING)
-        val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
-        adapter = MessageAdapter(options)
-        recycler_view.adapter = adapter
-
-        title = toUser.userName
-
-        //Testing RSA
-        encrypt("This is secret!")
-
-        try {
-            //cipher = Cipher.getInstance("RSA")
-            val keyBytes = byteArrayOfInts(0xA1, 0x2E, 0x38, 0xD4, 0x89, 0xC3)
-            val secretKey: SecretKey = SecretKeySpec(keyBytes, "AES")
-            //cipher.init()
-            //decipher = Cipher.getInstance("AES")
-        }
-        catch(e: NoSuchAlgorithmException)
-        {
-            e.printStackTrace()
-        }
-
-        editText = findViewById(R.id.edit_text)
-        listView = findViewById(R.id.list_viw)
-        rootRef = FirebaseFirestore.getInstance()
-        recycler_view = findViewById(R.id.recycler_view)
-        }
+            editText = findViewById(R.id.edit_text)
+            listView = findViewById(R.id.list_viw)
+            rootRef = FirebaseFirestore.getInstance()
+            recycler_view = findViewById(R.id.recycler_view)
+            }
         catch (e : java.lang.Exception)
         {
             Log.d(TAG, "onCreate: exception thrown when getting user")
